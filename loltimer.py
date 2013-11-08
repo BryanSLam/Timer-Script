@@ -2,7 +2,7 @@
 
 #Things to add: Real time timer, reminders, some way to run this as a web app maybe change code to javascript later
 import sys
-from Thread import Timer
+from threading import Timer
 print """
 Main Menu:
 1: Add New Timer
@@ -46,7 +46,7 @@ def add(type, currentTime):
 		timers.insert(x)
 	else:
 		for i in range (0, len(timers)):
-			if((timers[i][1] > x(1)):
+			if(timers[i][1] > x(1)):
 				timers.insert(i, x)
 			elif(i == len(timers)):
 				timers.insert(x)
@@ -56,5 +56,5 @@ def list():
 	for i in timers:
 		print i
 
-def reset:
+def reset():
 	timers = []
