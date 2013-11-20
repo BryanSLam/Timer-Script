@@ -1,6 +1,8 @@
-#Script used to keep track of important timers in-game:Buff timers, baron/dragon, enemy summoners
+#Script used to keep track of important timers in-game:Buff timers,
+#baron/dragon, enemy summoners
 
-#Things to add: Real time timer, reminders, some way to run this as a web app maybe change code to javascript later
+#Things to add: Real time timer, reminders, some way to run this as a web app
+#maybe change code to javascript later
 import sys
 from threading import Timer
 #Store timers in an array of tuples
@@ -35,46 +37,50 @@ Main Menu:
 
 #Should be quick types = b, d, eb, er, ab, ar
 #Automatically erase the entries after the elapsed time has passed
+#New plan, store the information in tuples which will be arranged by lowest 
+#time in an array
+#Each tuple holds the type of objective, the time it'll respawn, and how much 
+#time till it must be removed from the array
 def add(type, currentTime):
 	type = type.lower()
 	#baron
 	if (type == "b"):
-		x =("Baron", currentTime + 700)
-		Timer(420.0, timers.remove(x)).start()
+		x =("Baron", currentTime + 700, 420.0)
 	#dragon
 	elif (type == "d"):
-		x = ("Dragon", currentTime + 600)
-		Timer(360.0, timers.remove(x)).start()
+		x = ("Dragon", currentTime + 600, 360.0)
 	#enemy blue
 	elif (type == "eb"):
-		x = ("Enemy Blue", currentTime + 500)
-		Timer(300.0, timers.remove(x)).start()
+		x = ("Enemy Blue", currentTime + 500, 300.0)
 	#enemy red
 	elif (type == "er"):
-		x = ("Enemy Red", currentTime + 500)
-		Timer(300.0, timers.remove(x)).start()
+		x = ("Enemy Red", currentTime + 500, 300.0)
 	#allied red
 	elif (type == "ar"):
-		x = ("Allied Red", currentTime + 500)
-		Timer(300.0, timers.remove(x)).start()
+		x = ("Allied Red", currentTime + 500, 300.0)
 	#allied blue
 	elif (type == "ab"):
-		x = ("Allied Blue", currentTime + 500)
-		Timer(300.0, timers.remove(x)).start()
+		x = ("Allied Blue", currentTime + 500, 300.0)
+	else:
+		print "Type doesn't exist"
+		return
 
 	if (len(timers) == 0):
-		timers.insert(x)
+		timers.append(x)
+
 	else:
 		for i in range (0, len(timers)):
 			if(timers[i][1] > x(1)):
 				timers.insert(i, x)
-			elif(i == len(timers)):
-				timers.insert(x)
+			elif(i == len(timers)-1):
+				timers.append(x)
+	Timer(x[2], timers.remove(x)).start()
 
 def list():
 	#List the timers in order of lowest time
+	print "What"
 	for i in timers:
-		print i
+		print i[1]
 
 def reset():
 	timers = []
