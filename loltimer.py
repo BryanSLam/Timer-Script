@@ -14,6 +14,14 @@ def is_number(s):
     except ValueError:
         return False
 
+def timeConvertor(s):
+	#The last two numbers should always be the seconds so 
+	#place a colon before the 2nd to last character
+	#Strings in python are immutable but they're still
+	#an array of characters so just construct a new string from
+	#the existing one
+	return s[0: len(s)-2] + ":" + s[len(s)-2:len(s)]
+
 #Store timers in an array of tuples
 timers = []
 
@@ -43,7 +51,7 @@ Main Menu:
 				type = raw_input('Type: ')
 				if(type != "b" and type != "d" and type != "eb" and type!= "er" and type!= "ab" and type!= "ar"):
 					print "Enter a correct objective"
-					
+
 			add(type, int(time))
 		elif(s == '2'):
 			list()
@@ -94,6 +102,7 @@ def add(type, currentTime):
 			elif(i == len(timers)-1):
 				timers.append(x)
 	Timer(x[2], timers.remove(x)).start()
+	print "Added to list of timers will be removed in " + x[2]
 
 def list():
 	#List the timers in order of lowest time
