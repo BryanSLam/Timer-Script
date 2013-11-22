@@ -5,6 +5,15 @@
 #maybe change code to javascript later
 import sys
 from threading import Timer
+
+#Helper functions
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
 #Store timers in an array of tuples
 timers = []
 
@@ -22,8 +31,13 @@ Main Menu:
 		s = raw_input('>')
 
 		if(s == '1'):
-			print "Add a timer:"
-			time = raw_input('Time: ')
+			print "Add a timer"
+			#Predefine the variables for error checking
+			time = "abc"
+			type = "123"
+			while(is_number(time)):
+				time = raw_input('Time: ')
+
 			type = raw_input('Type: ')
 			add(type, int(time))
 		elif(s == '2'):
