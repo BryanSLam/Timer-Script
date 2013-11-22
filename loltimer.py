@@ -35,10 +35,15 @@ Main Menu:
 			#Predefine the variables for error checking
 			time = "abc"
 			type = "123"
-			while(is_number(time)):
+			while(is_number(time) == False):
 				time = raw_input('Time: ')
-
-			type = raw_input('Type: ')
+				if(is_number(time) == False):
+					print "Enter a correct time"
+			while(type != "b" and type != "d" and type != "eb" and type!= "er" and type!= "ab" and type!= "ar"):
+				type = raw_input('Type: ')
+				if(type != "b" and type != "d" and type != "eb" and type!= "er" and type!= "ab" and type!= "ar"):
+					print "Enter a correct objective"
+					
 			add(type, int(time))
 		elif(s == '2'):
 			list()
