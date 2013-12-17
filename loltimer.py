@@ -25,6 +25,7 @@ def timeConvertor(s):
 ##################### Main Area #######################
 #Store timers in an array of tuples
 timers = []
+timerObjects = []
 
 def menu():
 	print """
@@ -63,6 +64,8 @@ Main Menu:
 		elif(s == '3'):
 			reset()
 		elif(s == '0'):
+			for i in timerObjects:
+				i.cancel()
 			sys.exit()
 
 
@@ -102,16 +105,23 @@ def add(type, currentTime):
 
 	else:
 		for i in range (0, len(timers)):
-			if(timers[i][1] > x(1)):
+			if(timers[i][1] > x[1]):
 				timers.insert(i, x)
 			elif(i == len(timers)-1):
 				timers.append(x)
-	Timer(x[2], timers.remove(x)).start()
-	print "Added to list will be removed in " + str(x[2]) + "seconds"
+	#Timer will normally evaluate timers.remove and remove before creating the
+	#timer object, to remedy this use a lambda function which won't execute
+	#because it's annoymous until it's called by the timer object...I think
+	t = Timer(x[2], lambda: timers.remove(x))
+	t.start()
+	timerObjects.append(t)
+	print "Added to list will be removed in " + str(x[2]) + " seconds"
 
 def list():
 	#List the timers in order of lowest time
 	print "What"
+	if (len(timers) == 0):
+		print "No timers available"
 	for i in timers:
 		print i[1]
 
