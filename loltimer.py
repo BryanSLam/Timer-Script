@@ -63,6 +63,8 @@ Main Menu:
 			list()
 		elif(s == '3'):
 			reset()
+		elif(s == '4'):
+			help()
 		elif(s == '0'):
 			for i in timerObjects:
 				i.cancel()
@@ -119,16 +121,30 @@ def add(type, currentTime):
 
 def list():
 	#List the timers in order of lowest time
-	print "What"
 	if (len(timers) == 0):
 		print "No timers available"
 	for i in timers:
-		print i[1]
+		print i[0] +" "+ timeConvertor(str(i[1]))
 
 def reset():
 	timers = []
 
+def help():
+	print """
+	When Adding times make sure the Time input is the current time without the 
+	colon : EX: 17:00 -> 1700
+	
+	For types abbreviate the objective: Enemy Blue -> eb Allied Blue -> ab
+	Dragon -> d Baron -> b
 
+	Timers are automatically removed when the objective spawns 
+
+	Reset will clear all timers
+
+	If you enter an invalid timer that raises an exception like entering
+	"dragon" when asked for the current time, the script won't exit until 
+	all timers have run their course.
+	"""
 #Start shit up
 while(True):
 	menu()
