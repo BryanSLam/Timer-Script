@@ -107,7 +107,7 @@ def add(type, currentTime):
 			elif(i == len(timers)-1):
 				timers.append(x)
 	Timer(x[2], timers.remove(x)).start()
-	print "Added to list of timers will be removed in " + x[2]
+	print "Added to list will be removed in " + str(x[2]) + "seconds"
 
 def list():
 	#List the timers in order of lowest time
