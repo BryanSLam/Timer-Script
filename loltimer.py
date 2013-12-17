@@ -6,7 +6,7 @@
 import sys
 from threading import Timer
 
-#Helper functions
+################ Helper functions ####################
 def is_number(s):
     try:
         float(s)
@@ -22,6 +22,7 @@ def timeConvertor(s):
 	#the existing one
 	return s[0: len(s)-2] + ":" + s[len(s)-2:len(s)]
 
+##################### Main Area #######################
 #Store timers in an array of tuples
 timers = []
 
@@ -47,9 +48,13 @@ Main Menu:
 				time = raw_input('Time: ')
 				if(is_number(time) == False):
 					print "Enter a correct time"
-			while(type != "b" and type != "d" and type != "eb" and type!= "er" and type!= "ab" and type!= "ar"):
+			while(type != "b" and type != "d" and type != "eb" and type!= "er" 
+					and type!= "ab" and type!= "ar"):
+				
 				type = raw_input('Type: ')
-				if(type != "b" and type != "d" and type != "eb" and type!= "er" and type!= "ab" and type!= "ar"):
+				
+				if(type != "b" and type != "d" and type != "eb" and type!= "er" 
+					and type!= "ab" and type!= "ar"):
 					print "Enter a correct objective"
 
 			add(type, int(time))
