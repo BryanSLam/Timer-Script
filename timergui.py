@@ -4,15 +4,12 @@
 from Tkinter import *
 
 root = Tk()
-root.geometry('450x400')
+#root.geometry('450x400')
 root.title("Buff Timer")
 
-buttonFrame = Frame(root, width=50, height=400)
+addButton = Button(root, text="Add Timer").grid(column=1)
+resetButton = Button(root, text="Reset").grid(column = 1)
+helpButton = Button(root, text="Help").grid(column = 1)
 
-addButton = Button(buttonFrame,text="Add Timer").pack(side=RIGHT)
-helpButton = Button(buttonFrame,text="Help").pack(side=RIGHT)
-resetButton = Button(buttonFrame,text = "Reset").pack(side=RIGHT)
-
-buttonFrame.pack(side=RIGHT)
 
 root.mainloop()
