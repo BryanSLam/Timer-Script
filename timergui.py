@@ -4,21 +4,19 @@
 from Tkinter import *
 import tkMessageBox
 
-root = Tk()
+class Application(Tk):
+	def __init__(self):
+		Tk.__init__(self)
+		self.addLabel = Label(self, text="Add Timer: ")
+		self.addLabel.grid(row=0, column=1)
 
+		self.timerEntry = Entry(self)
+		self.timerEntry.grid(row=0, column=2)
+		self.addButton = Button(self, text="Add", command=self.testEntry)
+		self.addButton.grid(row=0, column=3)
 
-addTimerEntry = Entry(root).grid(row=0, column=2)
+	def testEntry(self):
+		print self.timerEntry.get()
 
-def entryTest():
-	print "wert"
-
-
-addLabel = Label(root, text="Add Timer:").grid(row=0, column = 1, sticky=W)
-addButton = Button(root, text="Add",command=entryTest)
-addButton.grid(row = 0, column=3)
-resetButton = Button(root, text="Reset").grid(column = 3)
-helpButton = Button(root, text="Help").grid(column = 3)
-
-#root.geometry('450x400')
-root.title("Buff Timer")
-root.mainloop()
+app = Application()
+app.mainloop()
